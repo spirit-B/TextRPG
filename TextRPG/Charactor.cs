@@ -22,7 +22,7 @@
             role = "전사";
             atk = 10;
             def = 5;
-            hp = 100;
+            hp = 80;
             gold = 5000;
 
             inventory = new Inventory();
@@ -85,9 +85,11 @@
                 {
                     foreach (Item item in inventory.ItemList)
                     {
+                        string checkIsArmedTxt = item.isArmed ? "[E]" : "";
                         string indexTxt = armedMod ? (inventory.ItemList.IndexOf(item) + 1).ToString() : "";
                         string typeTxt = item.type == ItemType.Weapon ? "공격력" : "방어력";
-                        Console.WriteLine($"- {indexTxt} {(item.isArmed ? "[E]" : "")}{item.name}  | {typeTxt} +{item.stat}    | {item.description}");
+
+                        Console.WriteLine($"- {indexTxt} {checkIsArmedTxt}{item.name}  | {typeTxt} +{item.stat}    | {item.description}");
                     }
                 }
 
