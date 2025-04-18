@@ -77,7 +77,7 @@
                 Console.WriteLine("인벤토리\n보유 중인 아이템을 관리할 수 있습니다.\n\n"
                     + "[아이템 목록]\n");
 
-                if (inventory.ItemList == null)
+                if (inventory.ItemList.Count == 0)
                 {
                     Console.WriteLine("");
                 }
@@ -94,6 +94,14 @@
                 Console.WriteLine("\n1. 장착 관리\n0. 나가기\n\n");
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string selectNumber = Console.ReadLine();
+
+                if (selectNumber == "1" && inventory.ItemList.Count == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("아이템이 없습니다.");
+                    Thread.Sleep(1000);
+                    continue;
+                }
 
                 if (armedMod && selectNumber == "0")
                 {
@@ -124,20 +132,7 @@
                 }
                 else
                 {
-                    switch (selectNumber)
-                    {
-                        case "1":
-                            armedMod = true;
-                            break;
-                        case "0":
-                            isShowing = false;
-                            break;
-                        default:
-                            Console.Clear();
-                            Console.WriteLine("잘못된 입력입니다.");
-                            Thread.Sleep(1000);
-                            break;
-                    }
+                    InputHandler.HandleInputHandler(selectNumber, ref armedMod, ref isShowing);
                 }
 
             }

@@ -80,20 +80,7 @@ namespace TextRPG
 				}
 				else
 				{
-					switch (selectNum)
-					{
-						case "1":
-							intoBuyItem = true;
-							break;
-						case "0":
-							isShowing = false;
-							break;
-						default:
-							Console.Clear();
-							Console.WriteLine("잘못된 입력입니다.");
-							Thread.Sleep(1000);
-							break;
-					}
+					InputHandler.HandleInputHandler(selectNum, ref intoBuyItem, ref isShowing);
 				}
 			}
 		}
